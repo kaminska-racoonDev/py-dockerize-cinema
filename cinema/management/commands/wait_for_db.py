@@ -5,8 +5,6 @@ import time
 
 
 class Command(BaseCommand):
-    help = "Wait for database"
-
     def handle(self, *args, **options):
         self.stdout.write("Waiting for database...")
 
