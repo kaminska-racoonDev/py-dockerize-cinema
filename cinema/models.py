@@ -60,7 +60,9 @@ class Movie(models.Model):
         blank=True,
         related_name="movies",
     )
-    image = models.ImageField(null=True, upload_to=movie_image_file_path)
+    image = models.ImageField(
+        null=True, upload_to=movie_image_file_path
+    )
 
     class Meta:
         ordering = ["title"]
@@ -75,7 +77,9 @@ class MovieSession(models.Model):
         Movie, on_delete=models.CASCADE, related_name="movie_sessions"
     )
     cinema_hall = models.ForeignKey(
-        CinemaHall, on_delete=models.CASCADE, related_name="movie_sessions"
+        CinemaHall,
+        on_delete=models.CASCADE,
+        related_name="movie_sessions",
     )
 
     class Meta:
@@ -104,13 +108,19 @@ class Ticket(models.Model):
     movie_session = models.ForeignKey(
         MovieSession, on_delete=models.CASCADE, related_name="tickets"
     )
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="tickets")
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, related_name="tickets"
+    )
     row = models.IntegerField()
     seat = models.IntegerField()
 
     @staticmethod
     def validate_ticket(row, seat, cinema_hall, error_to_raise):
-        for ticket_attr_value, ticket_attr_name, cinema_hall_attr_name in [
+        for (
+            ticket_attr_value,
+            ticket_attr_name,
+            cinema_hall_attr_name,
+        ) in [
             (row, "row", "rows"),
             (seat, "seat", "seats_in_row"),
         ]:
@@ -147,7 +157,8 @@ class Ticket(models.Model):
         )
 
     def __str__(self):
-        return f"{str(self.movie_session)} (row: {self.row}, seat: {self.seat})"
+        return f"{str(self.movie_session)}"
+        f"(row: {self.row}, seat: {self.seat})"
 
     class Meta:
         unique_together = ("movie_session", "row", "seat")
