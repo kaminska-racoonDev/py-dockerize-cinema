@@ -1,22 +1,11 @@
 .git
 .gitignore
-<<<<<<< HEAD
-venv
-.env
-=======
 .idea
 .vscode
->>>>>>> develop-02
 __pycache__
 *.pyc
 *.pyo
 *.sqlite3
-<<<<<<< HEAD
-.idea
-.vscode
-media
-staticfiles
-=======
 .venv
 venv
 env
@@ -27,4 +16,3 @@ db.sqlite3
 Dockerfile
 docker-compose.yml
 README.md
->>>>>>> develop-02
