@@ -90,15 +90,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "actors",
-                    models.ManyToManyField(
-                        blank=True, to="cinema.actor"
-                    ),
+                    models.ManyToManyField(blank=True, to="cinema.actor"),
                 ),
                 (
                     "genres",
-                    models.ManyToManyField(
-                        blank=True, to="cinema.genre"
-                    ),
+                    models.ManyToManyField(blank=True, to="cinema.genre"),
                 ),
             ],
             options={

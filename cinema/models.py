@@ -60,9 +60,7 @@ class Movie(models.Model):
         blank=True,
         related_name="movies",
     )
-    image = models.ImageField(
-        null=True, upload_to=movie_image_file_path
-    )
+    image = models.ImageField(null=True, upload_to=movie_image_file_path)
 
     class Meta:
         ordering = ["title"]

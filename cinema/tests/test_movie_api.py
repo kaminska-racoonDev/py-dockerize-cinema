@@ -66,9 +66,7 @@ class UnauthenticatedMovieApiTests(TestCase):
 
     def test_auth_required(self):
         res = self.client.get(MOVIE_URL)
-        self.assertEqual(
-            res.status_code, status.HTTP_401_UNAUTHORIZED
-        )
+        self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
 class AuthenticatedMovieApiTests(TestCase):
@@ -224,9 +222,7 @@ class AdminMovieApiTests(TestCase):
         self.assertIn(genre2, genres)
 
     def test_create_movie_with_actors(self):
-        actor1 = Actor.objects.create(
-            first_name="Tom", last_name="Holland"
-        )
+        actor1 = Actor.objects.create(first_name="Tom", last_name="Holland")
         actor2 = Actor.objects.create(
             first_name="Tobey", last_name="Maguire"
         )
@@ -266,9 +262,7 @@ class MovieImageUploadTests(TestCase):
             img = Image.new("RGB", (10, 10))
             img.save(ntf, format="JPEG")
             ntf.seek(0)
-            res = self.client.post(
-                url, {"image": ntf}, format="multipart"
-            )
+            res = self.client.post(url, {"image": ntf}, format="multipart")
         self.movie.refresh_from_db()
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
@@ -350,9 +344,7 @@ class MovieImageUploadTests(TestCase):
 
         res = self.client.put(url, payload)
 
-        self.assertEqual(
-            res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED
-        )
+        self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_delete_movie_not_allowed(self):
         movie = sample_movie()
@@ -360,6 +352,4 @@ class MovieImageUploadTests(TestCase):
 
         res = self.client.delete(url)
 
-        self.assertEqual(
-            res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED
-        )
+        self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
